@@ -1,7 +1,7 @@
 const fs = require('fs')
 const chalk = require('chalk')
 const yargs = require('yargs')
-const { argv } = require('process')
+const data = require('./data')
 
 // try{
 //   const data = fs.writeFileSync('notes.txt', 'This is written in the first attempt', {flag: "w+"})
@@ -10,7 +10,7 @@ const { argv } = require('process')
 //   console.log(err.message)
 // }
 
-
+fs.writeFileSync('data.json', data)
 
 
 // let command = process.argv[2]
