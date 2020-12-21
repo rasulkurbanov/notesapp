@@ -1,5 +1,6 @@
 const fs = require('fs')
 const chalk = require('chalk')
+const yargs = require('yargs')
 
 // try{
 //   const data = fs.writeFileSync('notes.txt', 'This is written in the first attempt', {flag: "w+"})
@@ -11,21 +12,66 @@ const chalk = require('chalk')
 
 
 
-let command = process.argv[2]
+// let command = process.argv[2]
 
-if(command === 'add') {
-  try{
-    const data = fs.appendFileSync('notes.txt', 'This is written in the first attempt', {flag: "a+"})
-    console.log(chalk.green('Adding a note'))
+// if(command === 'add') {
+//   try{
+//     const data = fs.appendFileSync('notes.txt', 'This is written in the first attempt', {flag: "a+"})
+//     console.log(chalk.green('Adding a note'))
+//   }
+//   catch(err) {
+//     console.log(err.message)
+//   }
+// }
+// else if (command === 'remove') {
+//   console.log(chalk.red('Removing a note'))
+// }
+
+//@desc Setting yargs version
+yargs.version('1.1.0')
+
+//@desc Setting command using yargs instead of process.argv
+//@input node server.js add
+yargs.command({
+  command: 'add',
+  describe: 'Add a new note',
+  handler: function() {
+    console.log('Adding a new note')
   }
-  catch(err) {
-    console.log(err.message)
+})
+
+//@desc Removing a note
+//@input node server.js remove
+yargs.command({
+  command: 'remove',
+  describe: 'Remove a note',
+  handler: function() {
+    console.log('Removing a note')
   }
-}
-else if (command === 'remove') {
-  console.log(chalk.red('Removing a note'))
-}
+})
+
+
+//@desc Listing all notes
+//@input node server.js list
+yargs.command({
+  command: 'list',
+  describe: 'Command to list all notes',
+  handler: function() {
+    console.log('Listing all notes')
+  }
+})
+
+//@desc Reading a note
+//@input node server.js read
+yargs.command({
+  command: 'read',
+  describe: 'Reading a note from source',
+  handler: function() {
+    console.log('Reading a note')
+  }
+})
 
 
 
-
+//@desc Setting above changes
+yargs.parse()

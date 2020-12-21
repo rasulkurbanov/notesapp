@@ -4,7 +4,8 @@
   "description": "Notes App input by CLI",
   "main": "server.js",
   "dependencies": {
-    "chalk": "^4.1.0"
+    "chalk": "^4.1.0",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {},
   "scripts": {
