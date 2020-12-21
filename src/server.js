@@ -10,7 +10,28 @@ const data = require('./data')
 //   console.log(err.message)
 // }
 
-fs.writeFileSync('data.json', data)
+// fs.writeFileSync('data.json', data)
+
+try {
+  const data = fs.readFileSync('data.json', 'utf-8')
+  const parsedData = JSON.parse(data)
+
+  let book = {
+    title: "How in works",
+    author: "Rasuljon Kurbanov"
+  }
+
+  console.log(parsedData)
+
+  const newData = parsedData.push(book)
+
+
+  fs.writeFileSync('data.json', JSON.stringify(newData))
+
+} catch (error) {
+  console.log(error)
+}
+
 
 
 // let command = process.argv[2]
