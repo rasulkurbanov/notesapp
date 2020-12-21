@@ -1,6 +1,7 @@
 const fs = require('fs')
 const chalk = require('chalk')
 const yargs = require('yargs')
+const { argv } = require('process')
 
 // try{
 //   const data = fs.writeFileSync('notes.txt', 'This is written in the first attempt', {flag: "w+"})
@@ -35,8 +36,20 @@ yargs.version('1.1.0')
 yargs.command({
   command: 'add',
   describe: 'Add a new note',
-  handler: function() {
-    console.log('Adding a new note')
+  builder: {
+    title: {
+      describe: "Adding title",
+      demandOption: true,
+      type: 'string'
+    },
+    body: {
+      describe: "Note body",
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler: function(argv) {
+    console.log(`Note title: ${argv.title} and body: ${argv.body}`)
   }
 })
 
