@@ -2,7 +2,7 @@ const fs = require('fs')
 const chalk = require('chalk')
 const yargs = require('yargs')
 const jsonBooks = require('./data')
-const { addNote, removeNote } = require('./controllers')
+const { addNote, removeNote, listNotes } = require('./controllers')
 
 // try{
 //   const data = fs.writeFileSync('notes.txt', 'This is written in the first attempt', {flag: "w+"})
@@ -101,7 +101,7 @@ yargs.command({
   command: 'list',
   describe: 'Command to list all notes',
   handler: function() {
-    console.log('Listing all notes')
+    listNotes()
   }
 })
 

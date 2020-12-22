@@ -1,4 +1,5 @@
 const fs = require('fs')
+const chalk = require('chalk')
 
 function getNotes() {
   return loadNotes()
@@ -25,14 +26,23 @@ function removeNote(par1) {
     if(note.title === par1) {
       notes.pop(note)
       saveNotes(notes)
+      console.log(chalk.red(`Note removed`))
     }
     else{
-      console.log(`Note with title of ${par1} does not exist`)
+      console.log(chalk.yellow`No note found`)
     }
   })
 }
 
 
+//@desc listingNotes function to list all notes from data.json 
+function listNotes() {
+  const notes = loadNotes()
+
+  notes.map(function(note) {
+    console.log(note)
+  })
+}
 
 
 
@@ -40,7 +50,6 @@ function removeNote(par1) {
 function saveNotes(notes) {
   const dataJSON = JSON.stringify(notes)
   fs.writeFileSync('data.json', dataJSON)
-  console.log('Data saved')
 }
 
 
@@ -59,5 +68,6 @@ function loadNotes() {
 module.exports = {
   getNotes,
   addNote,
-  removeNote
+  removeNote,
+  listNotes
 }
