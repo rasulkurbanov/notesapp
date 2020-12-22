@@ -3,6 +3,6 @@ const books = [
   {title: "Sherlock Holmes", author: "Arthur Konan Doyle"},
 ]
 
-const data = JSON.stringify(books)
+const jsonBooks = JSON.stringify(books)
 
-module.exports = data 
+module.exports = jsonBooks 

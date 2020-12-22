@@ -1,7 +1,8 @@
 const fs = require('fs')
 const chalk = require('chalk')
 const yargs = require('yargs')
-const data = require('./data')
+const jsonBooks = require('./data')
+const { addNote } = require('./controllers')
 
 // try{
 //   const data = fs.writeFileSync('notes.txt', 'This is written in the first attempt', {flag: "w+"})
@@ -12,27 +13,23 @@ const data = require('./data')
 
 // fs.writeFileSync('data.json', data)
 
+let data;
+
 try {
-  const data = fs.readFileSync('data.json', 'utf-8')
-  const parsedData = JSON.parse(data)
-
-  let book = {
-    title: "How in works",
-    author: "Rasuljon Kurbanov"
-  }
-
-  console.log(parsedData)
-
-  const newData = parsedData.push(book)
-
-
-  fs.writeFileSync('data.json', JSON.stringify(newData))
+  const readData = fs.readFileSync('data.json', 'utf-8')
+  data = JSON.parse(readData)
 
 } catch (error) {
   console.log(error)
 }
 
 
+try {
+  
+}
+catch(error) {
+  console.log(error)
+} 
 
 // let command = process.argv[2]
 
@@ -70,7 +67,8 @@ yargs.command({
     }
   },
   handler: function(argv) {
-    console.log(`Note title: ${argv.title} and body: ${argv.body}`)
+    // console.log(`Note title: ${argv.title} and body: ${argv.body}`)
+    addNote(argv.title, argv.body)
   }
 })
 
