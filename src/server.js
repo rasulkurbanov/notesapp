@@ -2,7 +2,7 @@ const fs = require('fs')
 const chalk = require('chalk')
 const yargs = require('yargs')
 const jsonBooks = require('./data')
-const { addNote } = require('./controllers')
+const { addNote, removeNote } = require('./controllers')
 
 // try{
 //   const data = fs.writeFileSync('notes.txt', 'This is written in the first attempt', {flag: "w+"})
@@ -76,9 +76,21 @@ yargs.command({
 //@input node server.js remove
 yargs.command({
   command: 'remove',
-  describe: 'Remove a note',
-  handler: function() {
-    console.log('Removing a note')
+  describe: 'Remove a note title',
+  builder: {
+    title: {
+      describe: "Removing title",
+      demandOption: true,
+      type: 'string'
+    },
+    body: {
+      describe: "Removing body",
+      demandOption: false,
+      type: 'string'
+    }
+  },
+  handler: function(argv) {
+    removeNote(argv.title)
   }
 })
 

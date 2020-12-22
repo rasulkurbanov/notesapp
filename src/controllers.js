@@ -4,6 +4,7 @@ function getNotes() {
   return loadNotes()
 }
 
+//@desc addNote function to add note to the data.json
 function addNote(title, body) {
   const notes = loadNotes()
   
@@ -14,6 +15,26 @@ function addNote(title, body) {
 
   saveNotes(notes)
 }
+
+
+//@desc removeNote function to remove a note from data.json 
+function removeNote(par1) {
+  const notes = loadNotes()
+
+  notes.map(function(note) {
+    if(note.title === par1) {
+      notes.pop(note)
+      saveNotes(notes)
+    }
+    else{
+      console.log(`Note with title of ${par1} does not exist`)
+    }
+  })
+}
+
+
+
+
 
 
 function saveNotes(notes) {
@@ -37,5 +58,6 @@ function loadNotes() {
 
 module.exports = {
   getNotes,
-  addNote
+  addNote,
+  removeNote
 }
